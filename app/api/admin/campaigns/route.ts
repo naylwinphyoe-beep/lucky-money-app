@@ -23,7 +23,9 @@ export async function GET() {
     if (error) throw error;
 
     return NextResponse.json({ campaigns: data });
-  } catch {
+  } catch (error) {
+    console.error('Campaign GET error:', error);
+
     return NextResponse.json(
       { error: 'Campaign စာရင်းရယူ၍မရပါ။' },
       { status: 500 }
