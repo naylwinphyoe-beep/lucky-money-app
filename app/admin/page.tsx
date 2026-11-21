@@ -29,8 +29,19 @@ export default async function Admin() {
   );
 
   return (
-    <main className="shell">
-      <CampaignManager />
-    </main>
-  );
+  <main className="shell">
+    <h1 className="title">Admin Dashboard</h1>
+
+    <EmployeeManager />
+
+    <CampaignManager />
+
+    <section className="panel">
+      <h2 className="gold">Draw & Payment Verification</h2>
+      <p className="small">
+        Total Draw Amount: {total.toLocaleString()} MMK
+      </p>
+    </section>
+  </main>
+);
 }
