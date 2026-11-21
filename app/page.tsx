@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function Home(){return <main className="shell"><div className="panel" style={{textAlign:'center',marginTop:70}}><div className="title">🪔 တန်ဆောင်တိုင် မုန့်ဖိုးမဲဖောက်ပွဲ</div><p className="muted">Shwe Ta Tar • Lucky Money</p><p>ပျော်ရွှင်စရာ တန်ဆောင်တိုင်အမှတ်တရလေး ဖြစ်ပါစေ။</p><Link href="/login"><button className="btn">မဲဖောက်ရန် ဝင်ရောက်မည်</button></Link><p className="small">ဝန်ထမ်းများအတွက်သာ</p></div></main>}

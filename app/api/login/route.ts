@@ -1,0 +1,5 @@
+import {NextResponse} from 'next/server';
+import bcrypt from 'bcryptjs';
+import {db} from '@/lib/supabase';
+import {makeSession} from '@/lib/session';
+export async function POST(req:Request){try{const {employeeId,password}=await req.json();if(!employeeId||!password)return NextResponse.json({error:'Employee ID နှင့် Password ဖြည့်ပါ။'},{status:400});if(employeeId==='ADMIN'&&process.env.ADMIN_PASSWORD&&password===process.env.ADMIN_PASSWORD){await makeSession({role:'admin'});return NextResponse.json({role:'admin'});}const {data,error}=await db().from('employees').select('employee_id,password_hash,is_active').eq('employee_id',String(employeeId).trim()).maybeSingle();if(error||!data||!data.is_active||!await bcrypt.compare(password,data.password_hash))return NextResponse.json({error:'Employee ID သို့မဟုတ် Password မှားယွင်းနေပါသည်။'},{status:401});await makeSession({role:'employee',employeeId:data.employee_id});return NextResponse.json({role:'employee'});}catch{return NextResponse.json({error:'Server configuration ကို စစ်ဆေးပါ။'},{status:500});}}
