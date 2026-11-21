@@ -129,11 +129,10 @@ export async function PATCH(req: Request) {
     }
 
     return NextResponse.json({ success: true });
-  } catch {
+   } catch (error) {
+    console.error('Campaign GET error:', error);
     return NextResponse.json(
-      { error: 'Campaign Status ပြောင်းလဲ၍မရပါ။' },
-      { status: 400 }
+      { error: 'Campaign စာရင်းရယူ၍မရပါ။' },
+      { status: 500 }
     );
   }
-}
-
